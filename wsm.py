@@ -1,9 +1,7 @@
 import numpy as np
 import pandas as pd
 
-# ------------------------------------------------------------
 # 1. DEFINICIÓN DE CRITERIOS Y TIPOS
-# ------------------------------------------------------------
 
 criterios = [
     "C1_Áreas_protegidas",
@@ -36,9 +34,7 @@ tipos = {
     "C12_Grado_urbanización": "beneficio"
 }
 
-# ------------------------------------------------------------
 # 2. MATRIZ DE COMPARACIÓN AHP
-# ------------------------------------------------------------
 
 A = np.array([
     [1,   2,   2,   5,   4,   5,   1/5, 3,   3,   2,   3,   3],
@@ -55,9 +51,7 @@ A = np.array([
     [1/3, 1/2, 1/2, 3,   1/2, 1,   1/7, 1,   1,   1,   1,   1]
 ], dtype=float)
 
-# ------------------------------------------------------------
 # 3. FUNCIÓN: OBTENER PESOS Y CONSISTENCIA
-# ------------------------------------------------------------
 
 def pesos_y_CR(A):
     vals, vecs = np.linalg.eig(A)
@@ -73,9 +67,7 @@ def pesos_y_CR(A):
 
 pesos, CR = pesos_y_CR(A)
 
-# ------------------------------------------------------------
 # 4. MATRIZ DE ALTERNATIVAS
-# ------------------------------------------------------------
 
 alternativas = [
     "ZONA_1","ZONA_2","ZONA_3","ZONA_4","ZONA_5",
@@ -97,9 +89,7 @@ X = pd.DataFrame({
     "C12_Grado_urbanización":   [12,45,8,60,5,75,20,35,3,30]
 }, index=alternativas)
 
-# ------------------------------------------------------------
 # 5. SELECCIÓN DE CRITERIOS (empty=all)
-# ------------------------------------------------------------
 
 criterios_seleccionados = [
 ]
@@ -131,9 +121,7 @@ pesos_sel = pesos_sel / pesos_sel.sum()  # renormalizar
 X_sel = X[criterios_final]
 tipos_sel = {c: tipos[c] for c in criterios_final}
 
-# ------------------------------------------------------------
 # 6. NORMALIZACIÓN SOLO DE LOS CRITERIOS SELECCIONADOS
-# ------------------------------------------------------------
 
 X_norm = X_sel.copy()
 
@@ -144,9 +132,9 @@ for c in criterios_final:
     else:
         X_norm[c] = (col.max() - col) / (col.max() - col.min())
 
-# ------------------------------------------------------------
+
 # 7. PUNTUACIÓN FINAL (WSM)
-# ------------------------------------------------------------
+
 
 puntajes = X_norm.values @ pesos_sel
 
@@ -154,9 +142,9 @@ ranking = pd.DataFrame({
     "Puntaje": puntajes
 }, index=alternativas).sort_values("Puntaje", ascending=False)
 
-# ------------------------------------------------------------
-# 8. SALIDAS
-# ------------------------------------------------------------
+
+# 8. SALIDAS WSM
+
 
 print("\n=== CRITERIOS ACTIVOS ===")
 print(criterios_final)
@@ -167,5 +155,5 @@ for c, p in zip(criterios_final, pesos_sel):
 
 print("\nCR Consistencia:", CR)
 
-print("\n=== RANKING FINAL ===")
+print("\n=== RANKING FINAL WSM ===")
 print(ranking)
