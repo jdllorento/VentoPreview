@@ -1,0 +1,11 @@
+id,nombre,lat,lon,C1_Areas_protegidas,C2_Areas_culturales,C3_Factor_riesgo,C4_Tasa_desempleo,C5_Inversion_publica,C6_Percepcion_seguridad,C7_Velocidad_viento,C8_Elevacion_terreno,C9_Pendiente_terreno,C10_Distancia_turistica,C11_Indice_accesibilidad,C12_Grado_urbanizacion
+A1,Guajira Norte,12.15,-71.2,320,14,65,12,150000,45,6.2,80,12,110,52,30
+A2,Santa Marta Sierra,11.2,-74.1,210,22,58,10,180000,60,7.8,450,18,90,61,45
+A3,Barranquilla Metropolitana,10.98,-74.8,50,35,40,14,300000,72,5.5,40,5,60,78,85
+A4,Cartagena Rural,10.4,-75.4,140,26,55,13,250000,68,6.1,35,4,70,75,80
+A5,Medellín Periférico,6.3,-75.6,95,40,32,11,450000,55,4.8,1500,16,85,82,70
+A6,Bogotá Sabana Norte,4.9,-74.1,180,52,38,9,500000,70,5.2,2600,10,95,88,90
+A7,Eje Cafetero Rural,4.5,-75.7,300,48,45,8,220000,65,6.5,1800,22,120,74,55
+A8,Llanos Orientales,4.1,-72.9,500,12,70,7,130000,50,7.1,250,9,150,58,25
+A9,Amazonas Frontera, -3.8,-70.3,1200,8,80,6,90000,35,5.9,120,14,200,40,10
+A10,Valle del Cauca Central,3.4,-76.5,130,44,36,10,420000,62,5.1,1000,20,65,80,75

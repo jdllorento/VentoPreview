@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_4ca93533041094905cfd69b961a73a33 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium@main/folium/templates/leaflet_heat.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+</head>
+<body>
+    
+    
+    <div style="
+        position: fixed; 
+        bottom: 40px; left: 40px; width: 160px; height: 180px; 
+        background-color: white; 
+        border:2px solid grey; 
+        z-index:9999; 
+        font-size:14px;
+        border-radius: 8px;
+        padding: 10px;
+    ">
+    <strong>Rating de Viabilidad</strong><br>
+    <div style="display: flex; flex-direction: column; margin-top: 10px;">
+
+    <div style="display: flex; align-items: center;">
+    <div style="background: red; width: 25px; height: 15px;"></div>
+    &nbsp; Muy baja
+    </div>
+
+    <div style="display: flex; align-items: center;">
+    <div style="background: yellow; width: 25px; height: 15px;"></div>
+    &nbsp; Baja
+    </div>
+
+    <div style="display: flex; align-items: center;">
+    <div style="background: lime; width: 25px; height: 15px;"></div>
+    &nbsp; Media
+    </div>
+
+    <div style="display: flex; align-items: center;">
+    <div style="background: cyan; width: 25px; height: 15px;"></div>
+    &nbsp; Alta
+    </div>
+
+    <div style="display: flex; align-items: center;">
+    <div style="background: blue; width: 25px; height: 15px;"></div>
+    &nbsp; Muy alta
+    </div>
+
+    </div>
+    </div>
+    
+    
+            <div class="folium-map" id="map_4ca93533041094905cfd69b961a73a33" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_4ca93533041094905cfd69b961a73a33 = L.map(
+                "map_4ca93533041094905cfd69b961a73a33",
+                {
+                    center: [6.413000000000001, -74.05999999999999],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 11,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_dccbec240293b249eb28f17226802445 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_dccbec240293b249eb28f17226802445.addTo(map_4ca93533041094905cfd69b961a73a33);
+        
+    
+            var circle_marker_4a12618dbfeccfed40a4f8d9ac203ac7 = L.circleMarker(
+                [12.15, -71.2],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#7cc765ff", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_4ca93533041094905cfd69b961a73a33);
+        
+    
+        var popup_9b9ccb251f650dad568d8a2315e6ea11 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b284835cb226b0f3d4afe5994f4f2427 = $(`<div id="html_b284835cb226b0f3d4afe5994f4f2427" style="width: 100.0%; height: 100.0%;">Guajira Norte<br>Score: 0.711</div>`)[0];
+                popup_9b9ccb251f650dad568d8a2315e6ea11.setContent(html_b284835cb226b0f3d4afe5994f4f2427);
+            
+        
+
+        circle_marker_4a12618dbfeccfed40a4f8d9ac203ac7.bindPopup(popup_9b9ccb251f650dad568d8a2315e6ea11)
+        ;
+
+        
+    
+    
+            circle_marker_4a12618dbfeccfed40a4f8d9ac203ac7.bindTooltip(
+                `<div>
+                     Guajira Norte
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_42b65540bc1ffe12c5200f4c89e9486c = L.circleMarker(
+                [11.2, -74.1],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d8ef8aff", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_4ca93533041094905cfd69b961a73a33);
+        
+    
+        var popup_5ade23113f8cc7410b5e8833b35e27aa = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_59c0d4ca36b58187cfc72bc4a60f0873 = $(`<div id="html_59c0d4ca36b58187cfc72bc4a60f0873" style="width: 100.0%; height: 100.0%;">Santa Marta Sierra<br>Score: 0.627</div>`)[0];
+                popup_5ade23113f8cc7410b5e8833b35e27aa.setContent(html_59c0d4ca36b58187cfc72bc4a60f0873);
+            
+        
+
+        circle_marker_42b65540bc1ffe12c5200f4c89e9486c.bindPopup(popup_5ade23113f8cc7410b5e8833b35e27aa)
+        ;
+
+        
+    
+    
+            circle_marker_42b65540bc1ffe12c5200f4c89e9486c.bindTooltip(
+                `<div>
+                     Santa Marta Sierra
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0af9f5839b796b676360a983551abb40 = L.circleMarker(
+                [10.98, -74.8],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#1a9850ff", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_4ca93533041094905cfd69b961a73a33);
+        
+    
+        var popup_51110b8d8fa4e22d05d791083185329a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ecafaec2afc516ff15188d94f7b9aca8 = $(`<div id="html_ecafaec2afc516ff15188d94f7b9aca8" style="width: 100.0%; height: 100.0%;">Barranquilla Metropolitana<br>Score: 0.779</div>`)[0];
+                popup_51110b8d8fa4e22d05d791083185329a.setContent(html_ecafaec2afc516ff15188d94f7b9aca8);
+            
+        
+
+        circle_marker_0af9f5839b796b676360a983551abb40.bindPopup(popup_51110b8d8fa4e22d05d791083185329a)
+        ;
+
+        
+    
+    
+            circle_marker_0af9f5839b796b676360a983551abb40.bindTooltip(
+                `<div>
+                     Barranquilla Metropolitana
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ea782b8a6ead505ef9b8d3b0d5a43d97 = L.circleMarker(
+                [10.4, -75.4],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#41ab5aff", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_4ca93533041094905cfd69b961a73a33);
+        
+    
+        var popup_f7b66d524553388025de365a6bef0e38 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_74f25121d71c52880b0427e5b4a6ce17 = $(`<div id="html_74f25121d71c52880b0427e5b4a6ce17" style="width: 100.0%; height: 100.0%;">Cartagena Rural<br>Score: 0.753</div>`)[0];
+                popup_f7b66d524553388025de365a6bef0e38.setContent(html_74f25121d71c52880b0427e5b4a6ce17);
+            
+        
+
+        circle_marker_ea782b8a6ead505ef9b8d3b0d5a43d97.bindPopup(popup_f7b66d524553388025de365a6bef0e38)
+        ;
+
+        
+    
+    
+            circle_marker_ea782b8a6ead505ef9b8d3b0d5a43d97.bindTooltip(
+                `<div>
+                     Cartagena Rural
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fae95e54fcee11b8bd109173055178ad = L.circleMarker(
+                [6.3, -75.6],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#5ab860ff", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_4ca93533041094905cfd69b961a73a33);
+        
+    
+        var popup_fb109bf228a27d2d65ca77171139f735 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_75c61eb5a5fc297759e01da05e6a7a9f = $(`<div id="html_75c61eb5a5fc297759e01da05e6a7a9f" style="width: 100.0%; height: 100.0%;">Medellín Periférico<br>Score: 0.736</div>`)[0];
+                popup_fb109bf228a27d2d65ca77171139f735.setContent(html_75c61eb5a5fc297759e01da05e6a7a9f);
+            
+        
+
+        circle_marker_fae95e54fcee11b8bd109173055178ad.bindPopup(popup_fb109bf228a27d2d65ca77171139f735)
+        ;
+
+        
+    
+    
+            circle_marker_fae95e54fcee11b8bd109173055178ad.bindTooltip(
+                `<div>
+                     Medellín Periférico
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_877a60dd3c0b0cb1328e6fedc4512d1b = L.circleMarker(
+                [4.9, -74.1],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#c2e67cff", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_4ca93533041094905cfd69b961a73a33);
+        
+    
+        var popup_b25d507ae11900b72068a63acfdb8e7c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_301d6e2ac82e5c0cf16141d8ef77e4bf = $(`<div id="html_301d6e2ac82e5c0cf16141d8ef77e4bf" style="width: 100.0%; height: 100.0%;">Bogotá Sabana Norte<br>Score: 0.649</div>`)[0];
+                popup_b25d507ae11900b72068a63acfdb8e7c.setContent(html_301d6e2ac82e5c0cf16141d8ef77e4bf);
+            
+        
+
+        circle_marker_877a60dd3c0b0cb1328e6fedc4512d1b.bindPopup(popup_b25d507ae11900b72068a63acfdb8e7c)
+        ;
+
+        
+    
+    
+            circle_marker_877a60dd3c0b0cb1328e6fedc4512d1b.bindTooltip(
+                `<div>
+                     Bogotá Sabana Norte
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6f73bf761d4ee35e014761daa92d6cdd = L.circleMarker(
+                [4.5, -75.7],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#e8f6a0ff", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_4ca93533041094905cfd69b961a73a33);
+        
+    
+        var popup_9a39910f855bfaba0ce442eaa139ba5f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8f3240132814fce2f281c50ca4c47612 = $(`<div id="html_8f3240132814fce2f281c50ca4c47612" style="width: 100.0%; height: 100.0%;">Eje Cafetero Rural<br>Score: 0.606</div>`)[0];
+                popup_9a39910f855bfaba0ce442eaa139ba5f.setContent(html_8f3240132814fce2f281c50ca4c47612);
+            
+        
+
+        circle_marker_6f73bf761d4ee35e014761daa92d6cdd.bindPopup(popup_9a39910f855bfaba0ce442eaa139ba5f)
+        ;
+
+        
+    
+    
+            circle_marker_6f73bf761d4ee35e014761daa92d6cdd.bindTooltip(
+                `<div>
+                     Eje Cafetero Rural
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_563a359a9ef206975d2fc83bf902e945 = L.circleMarker(
+                [4.1, -72.9],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#ffffbeff", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_4ca93533041094905cfd69b961a73a33);
+        
+    
+        var popup_1980b395039c185cbc3de4328a0d5efb = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1830e7f06a5875145469687bd4bebe03 = $(`<div id="html_1830e7f06a5875145469687bd4bebe03" style="width: 100.0%; height: 100.0%;">Llanos Orientales<br>Score: 0.573</div>`)[0];
+                popup_1980b395039c185cbc3de4328a0d5efb.setContent(html_1830e7f06a5875145469687bd4bebe03);
+            
+        
+
+        circle_marker_563a359a9ef206975d2fc83bf902e945.bindPopup(popup_1980b395039c185cbc3de4328a0d5efb)
+        ;
+
+        
+    
+    
+            circle_marker_563a359a9ef206975d2fc83bf902e945.bindTooltip(
+                `<div>
+                     Llanos Orientales
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2766ada6333179d8bad6d4107129c79b = L.circleMarker(
+                [-3.8, -70.3],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#d73027ff", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_4ca93533041094905cfd69b961a73a33);
+        
+    
+        var popup_34825fd613406618b8b7015b9d65fc93 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_519cebc9125619f3c4519535072ac0c2 = $(`<div id="html_519cebc9125619f3c4519535072ac0c2" style="width: 100.0%; height: 100.0%;">Amazonas Frontera<br>Score: 0.370</div>`)[0];
+                popup_34825fd613406618b8b7015b9d65fc93.setContent(html_519cebc9125619f3c4519535072ac0c2);
+            
+        
+
+        circle_marker_2766ada6333179d8bad6d4107129c79b.bindPopup(popup_34825fd613406618b8b7015b9d65fc93)
+        ;
+
+        
+    
+    
+            circle_marker_2766ada6333179d8bad6d4107129c79b.bindTooltip(
+                `<div>
+                     Amazonas Frontera
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9882cad79b8fd3052897c8bf5e1e7c05 = L.circleMarker(
+                [3.4, -76.5],
+                {"bubblingMouseEvents": true, "color": null, "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#70c164ff", "fillOpacity": 1, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_4ca93533041094905cfd69b961a73a33);
+        
+    
+        var popup_c31a1849a6e54f470dfd20cd398d4174 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_3023a1f803d5087a76db98302652bdb1 = $(`<div id="html_3023a1f803d5087a76db98302652bdb1" style="width: 100.0%; height: 100.0%;">Valle del Cauca Central<br>Score: 0.721</div>`)[0];
+                popup_c31a1849a6e54f470dfd20cd398d4174.setContent(html_3023a1f803d5087a76db98302652bdb1);
+            
+        
+
+        circle_marker_9882cad79b8fd3052897c8bf5e1e7c05.bindPopup(popup_c31a1849a6e54f470dfd20cd398d4174)
+        ;
+
+        
+    
+    
+            circle_marker_9882cad79b8fd3052897c8bf5e1e7c05.bindTooltip(
+                `<div>
+                     Valle del Cauca Central
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var heat_map_225729d9652cd47d2673510fec47af38 = L.heatLayer(
+                [[12.15, -71.2, 0.7110281194223285], [11.2, -74.1, 0.6271338832890929], [10.98, -74.8, 0.7794394895676193], [10.4, -75.4, 0.7532878389133786], [6.3, -75.6, 0.7359366269224024], [4.9, -74.1, 0.6488679826532315], [4.5, -75.7, 0.6057501280897829], [4.1, -72.9, 0.5730427231467947], [-3.8, -70.3, 0.3698694817857961], [3.4, -76.5, 0.7205663813612658]],
+                {
+  "minOpacity": 0.3,
+  "maxZoom": 18,
+  "radius": 35,
+  "blur": 25,
+  "gradient": {
+  0.0: "red",
+  0.5: "yellow",
+  1.0: "green",
+},
+}
+            );
+        
+    
+            heat_map_225729d9652cd47d2673510fec47af38.addTo(map_4ca93533041094905cfd69b961a73a33);
+        
+    
+    var color_map_215f738dadf75b5afd61de7bd9112064 = {};
+
+    
+    color_map_215f738dadf75b5afd61de7bd9112064.color = d3.scale.threshold()
+              .domain([0.3698694817857961, 0.37069026336451716, 0.3715110449432383, 0.37233182652195934, 0.37315260810068046, 0.3739733896794015, 0.37479417125812264, 0.3756149528368437, 0.3764357344155648, 0.3772565159942859, 0.378077297573007, 0.3788980791517281, 0.37971886073044914, 0.38053964230917026, 0.3813604238878913, 0.38218120546661244, 0.3830019870453335, 0.3838227686240546, 0.3846435502027757, 0.3854643317814968, 0.38628511336021787, 0.38710589493893893, 0.38792667651766005, 0.3887474580963811, 0.38956823967510223, 0.3903890212538233, 0.3912098028325444, 0.3920305844112655, 0.3928513659899866, 0.39367214756870766, 0.39449292914742873, 0.39531371072614985, 0.3961344923048709, 0.39695527388359203, 0.3977760554623131, 0.3985968370410342, 0.3994176186197553, 0.4002384001984764, 0.40105918177719746, 0.4018799633559186, 0.40270074493463964, 0.4035215265133607, 0.4043423080920818, 0.4051630896708029, 0.405983871249524, 0.4068046528282451, 0.4076254344069662, 0.40844621598568726, 0.4092669975644084, 0.41008777914312944, 0.41090856072185056, 0.4117293423005716, 0.4125501238792927, 0.4133709054580138, 0.41419168703673487, 0.415012468615456, 0.41583325019417705, 0.41665403177289817, 0.41747481335161923, 0.4182955949303403, 0.4191163765090614, 0.4199371580877825, 0.4207579396665036, 0.42157872124522466, 0.4223995028239458, 0.42322028440266685, 0.42404106598138797, 0.42486184756010903, 0.42568262913883015, 0.4265034107175512, 0.4273241922962723, 0.4281449738749934, 0.42896575545371446, 0.4297865370324356, 0.43060731861115664, 0.43142810018987776, 0.4322488817685988, 0.4330696633473199, 0.433890444926041, 0.4347112265047621, 0.4355320080834832, 0.43635278966220425, 0.4371735712409254, 0.43799435281964644, 0.4388151343983675, 0.4396359159770886, 0.44045669755580974, 0.4412774791345308, 0.44209826071325187, 0.442919042291973, 0.4437398238706941, 0.44456060544941517, 0.44538138702813623, 0.44620216860685735, 0.4470229501855784, 0.44784373176429954, 0.4486645133430206, 0.4494852949217417, 0.4503060765004628, 0.45112685807918385, 0.45194763965790496, 0.45276842123662603, 0.45358920281534715, 0.4544099843940682, 0.45523076597278933, 0.4560515475515104, 0.45687232913023146, 0.4576931107089526, 0.4585138922876737, 0.45933467386639476, 0.4601554554451158, 0.46097623702383694, 0.461797018602558, 0.4626178001812791, 0.4634385817600002, 0.4642593633387213, 0.4650801449174424, 0.46590092649616344, 0.46672170807488456, 0.4675424896536056, 0.46836327123232674, 0.4691840528110478, 0.4700048343897689, 0.47082561596849, 0.47164639754721105, 0.47246717912593217, 0.4732879607046533, 0.47410874228337435, 0.4749295238620954, 0.47575030544081653, 0.47657108701953765, 0.4773918685982587, 0.4782126501769798, 0.4790334317557009, 0.47985421333442196, 0.4806749949131431, 0.48149577649186415, 0.48231655807058527, 0.48313733964930633, 0.4839581212280274, 0.4847789028067485, 0.4855996843854696, 0.4864204659641907, 0.48724124754291176, 0.4880620291216329, 0.48888281070035394, 0.489703592279075, 0.4905243738577961, 0.49134515543651724, 0.4921659370152383, 0.49298671859395937, 0.4938075001726805, 0.49462828175140156, 0.4954490633301227, 0.49626984490884374, 0.49709062648756486, 0.4979114080662859, 0.498732189645007, 0.4995529712237281, 0.5003737528024492, 0.5011945343811703, 0.5020153159598914, 0.5028360975386125, 0.5036568791173336, 0.5044776606960546, 0.5052984422747757, 0.5061192238534968, 0.5069400054322178, 0.507760787010939, 0.5085815685896601, 0.5094023501683811, 0.5102231317471022, 0.5110439133258233, 0.5118646949045444, 0.5126854764832656, 0.5135062580619866, 0.5143270396407077, 0.5151478212194288, 0.5159686027981498, 0.5167893843768709, 0.5176101659555921, 0.5184309475343132, 0.5192517291130342, 0.5200725106917553, 0.5208932922704764, 0.5217140738491974, 0.5225348554279186, 0.5233556370066397, 0.5241764185853608, 0.5249972001640819, 0.5258179817428029, 0.526638763321524, 0.5274595449002452, 0.5282803264789662, 0.5291011080576873, 0.5299218896364084, 0.5307426712151295, 0.5315634527938505, 0.5323842343725717, 0.5332050159512928, 0.5340257975300138, 0.5348465791087349, 0.535667360687456, 0.5364881422661771, 0.5373089238448981, 0.5381297054236193, 0.5389504870023404, 0.5397712685810614, 0.5405920501597825, 0.5414128317385036, 0.5422336133172247, 0.5430543948959458, 0.5438751764746669, 0.544695958053388, 0.545516739632109, 0.5463375212108301, 0.5471583027895512, 0.5479790843682724, 0.5487998659469935, 0.5496206475257145, 0.5504414291044356, 0.5512622106831566, 0.5520829922618777, 0.5529037738405989, 0.55372455541932, 0.5545453369980411, 0.5553661185767621, 0.5561869001554832, 0.5570076817342043, 0.5578284633129253, 0.5586492448916465, 0.5594700264703676, 0.5602908080490887, 0.5611115896278098, 0.5619323712065308, 0.562753152785252, 0.563573934363973, 0.5643947159426941, 0.5652154975214152, 0.5660362791001363, 0.5668570606788573, 0.5676778422575784, 0.5684986238362996, 0.5693194054150206, 0.5701401869937417, 0.5709609685724628, 0.5717817501511839, 0.572602531729905, 0.5734233133086261, 0.5742440948873472, 0.5750648764660682, 0.5758856580447893, 0.5767064396235104, 0.5775272212022315, 0.5783480027809527, 0.5791687843596737, 0.5799895659383948, 0.5808103475171159, 0.5816311290958369, 0.582451910674558, 0.5832726922532792, 0.5840934738320003, 0.5849142554107213, 0.5857350369894424, 0.5865558185681635, 0.5873766001468845, 0.5881973817256057, 0.5890181633043268, 0.5898389448830479, 0.590659726461769, 0.59148050804049, 0.5923012896192111, 0.5931220711979323, 0.5939428527766533, 0.5947636343553744, 0.5955844159340955, 0.5964051975128165, 0.5972259790915376, 0.5980467606702587, 0.5988675422489798, 0.5996883238277009, 0.600509105406422, 0.6013298869851431, 0.6021506685638642, 0.6029714501425852, 0.6037922317213064, 0.6046130133000275, 0.6054337948787485, 0.6062545764574696, 0.6070753580361907, 0.6078961396149118, 0.6087169211936329, 0.609537702772354, 0.6103584843510751, 0.6111792659297961, 0.6120000475085172, 0.6128208290872383, 0.6136416106659595, 0.6144623922446806, 0.6152831738234016, 0.6161039554021227, 0.6169247369808437, 0.6177455185595648, 0.618566300138286, 0.6193870817170071, 0.6202078632957282, 0.6210286448744493, 0.6218494264531703, 0.6226702080318913, 0.6234909896106124, 0.6243117711893336, 0.6251325527680547, 0.6259533343467758, 0.6267741159254968, 0.6275948975042179, 0.6284156790829389, 0.6292364606616601, 0.6300572422403812, 0.6308780238191023, 0.6316988053978234, 0.6325195869765445, 0.6333403685552655, 0.6341611501339867, 0.6349819317127077, 0.6358027132914288, 0.6366234948701499, 0.637444276448871, 0.6382650580275921, 0.6390858396063133, 0.6399066211850343, 0.6407274027637553, 0.6415481843424764, 0.6423689659211975, 0.6431897474999186, 0.6440105290786396, 0.6448313106573608, 0.6456520922360818, 0.6464728738148029, 0.647293655393524, 0.6481144369722451, 0.6489352185509663, 0.6497560001296874, 0.6505767817084084, 0.6513975632871295, 0.6522183448658505, 0.6530391264445716, 0.6538599080232927, 0.6546806896020139, 0.655501471180735, 0.6563222527594561, 0.6571430343381771, 0.6579638159168982, 0.6587845974956192, 0.6596053790743404, 0.6604261606530615, 0.6612469422317826, 0.6620677238105037, 0.6628885053892248, 0.6637092869679458, 0.664530068546667, 0.665350850125388, 0.6661716317041091, 0.6669924132828302, 0.6678131948615513, 0.6686339764402723, 0.6694547580189935, 0.6702755395977145, 0.6710963211764356, 0.6719171027551567, 0.6727378843338778, 0.6735586659125989, 0.67437944749132, 0.6752002290700411, 0.6760210106487621, 0.6768417922274832, 0.6776625738062043, 0.6784833553849254, 0.6793041369636466, 0.6801249185423677, 0.6809457001210887, 0.6817664816998098, 0.6825872632785308, 0.6834080448572519, 0.684228826435973, 0.6850496080146942, 0.6858703895934153, 0.6866911711721364, 0.6875119527508574, 0.6883327343295784, 0.6891535159082995, 0.6899742974870207, 0.6907950790657418, 0.6916158606444629, 0.6924366422231839, 0.693257423801905, 0.694078205380626, 0.6948989869593472, 0.6957197685380683, 0.6965405501167894, 0.6973613316955105, 0.6981821132742316, 0.6990028948529526, 0.6998236764316738, 0.7006444580103948, 0.7014652395891159, 0.702286021167837, 0.7031068027465581, 0.7039275843252792, 0.7047483659040003, 0.7055691474827214, 0.7063899290614424, 0.7072107106401635, 0.7080314922188846, 0.7088522737976057, 0.7096730553763267, 0.7104938369550479, 0.7113146185337689, 0.71213540011249, 0.7129561816912111, 0.7137769632699322, 0.7145977448486533, 0.7154185264273745, 0.7162393080060955, 0.7170600895848166, 0.7178808711635376, 0.7187016527422587, 0.7195224343209798, 0.720343215899701, 0.7211639974784221, 0.7219847790571432, 0.7228055606358642, 0.7236263422145853, 0.7244471237933063, 0.7252679053720275, 0.7260886869507486, 0.7269094685294697, 0.7277302501081908, 0.7285510316869119, 0.7293718132656329, 0.730192594844354, 0.7310133764230751, 0.7318341580017962, 0.7326549395805173, 0.7334757211592383, 0.7342965027379594, 0.7351172843166804, 0.7359380658954016, 0.7367588474741227, 0.7375796290528438, 0.7384004106315649, 0.739221192210286, 0.740041973789007, 0.7408627553677282, 0.7416835369464492, 0.7425043185251703, 0.7433251001038914, 0.7441458816826125, 0.7449666632613337, 0.7457874448400548, 0.7466082264187758, 0.7474290079974969, 0.7482497895762179, 0.749070571154939, 0.7498913527336601, 0.7507121343123813, 0.7515329158911024, 0.7523536974698235, 0.7531744790485445, 0.7539952606272655, 0.7548160422059866, 0.7556368237847078, 0.7564576053634289, 0.75727838694215, 0.758099168520871, 0.7589199500995921, 0.7597407316783131, 0.7605615132570342, 0.7613822948357554, 0.7622030764144765, 0.7630238579931976, 0.7638446395719186, 0.7646654211506397, 0.7654862027293607, 0.7663069843080819, 0.767127765886803, 0.7679485474655241, 0.7687693290442452, 0.7695901106229663, 0.7704108922016873, 0.7712316737804085, 0.7720524553591295, 0.7728732369378506, 0.7736940185165717, 0.7745148000952928, 0.775335581674014, 0.776156363252735, 0.776977144831456, 0.7777979264101771, 0.7786187079888982, 0.7794394895676193])
+              .range(['#d73027ff', '#d83127ff', '#d83228ff', '#d93328ff', '#d93428ff', '#da3529ff', '#da3629ff', '#db372aff', '#db382aff', '#dc392bff', '#dc3a2bff', '#dc3a2cff', '#dd3b2cff', '#dd3c2dff', '#de3d2dff', '#de3e2dff', '#df3f2eff', '#df402eff', '#e0412fff', '#e0422fff', '#e14330ff', '#e14430ff', '#e24531ff', '#e24631ff', '#e34731ff', '#e34832ff', '#e34932ff', '#e44a33ff', '#e44b33ff', '#e54c34ff', '#e54d34ff', '#e64e35ff', '#e64f35ff', '#e75036ff', '#e75136ff', '#e85236ff', '#e85337ff', '#e95437ff', '#e95538ff', '#ea5638ff', '#ea5739ff', '#ea5839ff', '#eb593aff', '#eb5a3aff', '#ec5b3aff', '#ec5c3bff', '#ed5d3bff', '#ed5e3cff', '#ee5f3cff', '#ee603dff', '#ef613dff', '#ef623eff', '#f0633eff', '#f0643fff', '#f1653fff', '#f1663fff', '#f16740ff', '#f26840ff', '#f26941ff', '#f36a41ff', '#f36b42ff', '#f46c42ff', '#f46d43ff', '#f56e43ff', '#f56f44ff', '#f57044ff', '#f57145ff', '#f57245ff', '#f57345ff', '#f57446ff', '#f67546ff', '#f67647ff', '#f67747ff', '#f67848ff', '#f67948ff', '#f67a49ff', '#f67b49ff', '#f77c4aff', '#f77d4aff', '#f77e4bff', '#f77f4bff', '#f7804cff', '#f7814cff', '#f7834dff', '#f8844dff', '#f8854eff', '#f8864eff', '#f8874fff', '#f8884fff', '#f88950ff', '#f88a50ff', '#f98b51ff', '#f98c51ff', '#f98d52ff', '#f98e52ff', '#f98f53ff', '#f99053ff', '#f99153ff', '#fa9254ff', '#fa9354ff', '#fa9455ff', '#fa9555ff', '#fa9656ff', '#fa9756ff', '#fa9857ff', '#fb9a57ff', '#fb9b58ff', '#fb9c58ff', '#fb9d59ff', '#fb9e59ff', '#fb9f5aff', '#fca05aff', '#fca15bff', '#fca25bff', '#fca35cff', '#fca45cff', '#fca55dff', '#fca65dff', '#fda75eff', '#fda85eff', '#fda95fff', '#fdaa5fff', '#fdab60ff', '#fdac60ff', '#fdad61ff', '#fdae61ff', '#feaf62ff', '#feb062ff', '#feb163ff', '#feb264ff', '#feb264ff', '#feb365ff', '#feb466ff', '#feb566ff', '#feb667ff', '#feb668ff', '#feb768ff', '#feb869ff', '#feb96aff', '#feba6bff', '#feba6bff', '#febb6cff', '#febc6dff', '#febd6dff', '#febe6eff', '#febe6fff', '#febf6fff', '#fec070ff', '#fec171ff', '#fec271ff', '#fec372ff', '#fec373ff', '#fec473ff', '#fec574ff', '#fec675ff', '#fec775ff', '#fec776ff', '#fec877ff', '#fec977ff', '#feca78ff', '#fecb79ff', '#fecb79ff', '#fecc7aff', '#fecd7bff', '#fece7bff', '#fecf7cff', '#fecf7dff', '#fed07dff', '#fed17eff', '#fed27fff', '#fed37fff', '#fed380ff', '#fed481ff', '#fed581ff', '#fed682ff', '#fed783ff', '#fed784ff', '#fed884ff', '#fed985ff', '#feda86ff', '#fedb86ff', '#fedb87ff', '#fedc88ff', '#fedd88ff', '#fede89ff', '#fedf8aff', '#fedf8aff', '#fee08bff', '#ffe18cff', '#ffe18dff', '#ffe28dff', '#ffe28eff', '#ffe38fff', '#ffe390ff', '#ffe491ff', '#ffe492ff', '#ffe592ff', '#ffe593ff', '#ffe694ff', '#ffe695ff', '#ffe796ff', '#ffe797ff', '#ffe897ff', '#ffe898ff', '#ffe999ff', '#ffe99aff', '#ffea9bff', '#ffea9cff', '#ffeb9dff', '#ffeb9dff', '#ffec9eff', '#ffec9fff', '#ffeda0ff', '#ffeda1ff', '#ffeea2ff', '#ffeea2ff', '#ffefa3ff', '#ffefa4ff', '#fff0a5ff', '#fff0a6ff', '#fff1a7ff', '#fff1a7ff', '#fff2a8ff', '#fff2a9ff', '#fff3aaff', '#fff3abff', '#fff4acff', '#fff4acff', '#fff5adff', '#fff5aeff', '#fff6afff', '#fff6b0ff', '#fff7b1ff', '#fff7b1ff', '#fff8b2ff', '#fff8b3ff', '#fff9b4ff', '#fff9b5ff', '#fffab6ff', '#fffab6ff', '#fffbb7ff', '#fffbb8ff', '#fffcb9ff', '#fffcbaff', '#fffdbbff', '#fffdbbff', '#fffebcff', '#fffebdff', '#ffffbeff', '#ffffbfff', '#ffffbfff', '#ffffbeff', '#feffbdff', '#fdffbcff', '#fdfebbff', '#fcfebbff', '#fcfebaff', '#fbfeb9ff', '#fafdb8ff', '#fafdb7ff', '#f9fdb6ff', '#f8fdb6ff', '#f8fcb5ff', '#f7fcb4ff', '#f7fcb3ff', '#f6fcb2ff', '#f5fbb1ff', '#f5fbb1ff', '#f4fbb0ff', '#f4faafff', '#f3faaeff', '#f2faadff', '#f2faacff', '#f1f9acff', '#f1f9abff', '#f0f9aaff', '#eff9a9ff', '#eff8a8ff', '#eef8a7ff', '#edf8a7ff', '#edf8a6ff', '#ecf7a5ff', '#ecf7a4ff', '#ebf7a3ff', '#eaf7a2ff', '#eaf6a2ff', '#e9f6a1ff', '#e9f6a0ff', '#e8f69fff', '#e7f59eff', '#e7f59dff', '#e6f59dff', '#e6f59cff', '#e5f49bff', '#e4f49aff', '#e4f499ff', '#e3f498ff', '#e2f397ff', '#e2f397ff', '#e1f396ff', '#e1f295ff', '#e0f294ff', '#dff293ff', '#dff292ff', '#def192ff', '#def191ff', '#ddf190ff', '#dcf18fff', '#dcf08eff', '#dbf08dff', '#daf08dff', '#daf08cff', '#d9ef8bff', '#d8ef8aff', '#d8ef8aff', '#d7ee89ff', '#d6ee89ff', '#d5ee88ff', '#d4ed88ff', '#d4ed87ff', '#d3ed87ff', '#d2ec86ff', '#d1ec86ff', '#d0eb85ff', '#cfeb85ff', '#cfeb84ff', '#ceea84ff', '#cdea83ff', '#ccea82ff', '#cbe982ff', '#cae981ff', '#cae981ff', '#c9e880ff', '#c8e880ff', '#c7e87fff', '#c6e77fff', '#c6e77eff', '#c5e77eff', '#c4e67dff', '#c3e67dff', '#c2e57cff', '#c1e57cff', '#c1e57bff', '#c0e47bff', '#bfe47aff', '#bee479ff', '#bde379ff', '#bde378ff', '#bce378ff', '#bbe277ff', '#bae277ff', '#b9e276ff', '#b8e176ff', '#b8e175ff', '#b7e175ff', '#b6e074ff', '#b5e074ff', '#b4df73ff', '#b3df73ff', '#b3df72ff', '#b2de71ff', '#b1de71ff', '#b0de70ff', '#afdd70ff', '#afdd6fff', '#aedd6fff', '#addc6eff', '#acdc6eff', '#abdc6dff', '#aadb6dff', '#aadb6cff', '#a9db6cff', '#a8da6bff', '#a7da6bff', '#a6d96aff', '#a5d96aff', '#a4d96aff', '#a3d86aff', '#a2d869ff', '#a1d769ff', '#a0d769ff', '#9fd669ff', '#9ed669ff', '#9dd569ff', '#9cd569ff', '#9bd569ff', '#9ad469ff', '#99d468ff', '#98d368ff', '#97d368ff', '#96d268ff', '#95d268ff', '#94d168ff', '#93d168ff', '#92d068ff', '#91d068ff', '#90d067ff', '#8fcf67ff', '#8ecf67ff', '#8dce67ff', '#8cce67ff', '#8bcd67ff', '#8acd67ff', '#89cc67ff', '#88cc67ff', '#86cb66ff', '#85cb66ff', '#84cb66ff', '#83ca66ff', '#82ca66ff', '#81c966ff', '#80c966ff', '#7fc866ff', '#7ec866ff', '#7dc765ff', '#7cc765ff', '#7bc765ff', '#7ac665ff', '#79c665ff', '#78c565ff', '#77c565ff', '#76c465ff', '#75c465ff', '#74c364ff', '#73c364ff', '#72c264ff', '#71c264ff', '#70c264ff', '#6fc164ff', '#6ec164ff', '#6dc064ff', '#6cc064ff', '#6bbf63ff', '#6abf63ff', '#69be63ff', '#68be63ff', '#67be63ff', '#65bd63ff', '#64bc62ff', '#63bc62ff', '#62bb62ff', '#61bb62ff', '#5fba61ff', '#5eb961ff', '#5db961ff', '#5cb860ff', '#5ab860ff', '#59b760ff', '#58b65fff', '#57b65fff', '#56b55fff', '#54b55eff', '#53b45eff', '#52b35eff', '#51b35eff', '#4fb25dff', '#4eb25dff', '#4db15dff', '#4cb15cff', '#4bb05cff', '#49af5cff', '#48af5bff', '#47ae5bff', '#46ae5bff', '#44ad5bff', '#43ac5aff', '#42ac5aff', '#41ab5aff', '#40ab59ff', '#3eaa59ff', '#3da959ff', '#3ca958ff', '#3ba858ff', '#39a858ff', '#38a757ff', '#37a657ff', '#36a657ff', '#35a557ff', '#33a556ff', '#32a456ff', '#31a356ff', '#30a355ff', '#2ea255ff', '#2da255ff', '#2ca154ff', '#2ba054ff', '#2aa054ff', '#289f53ff', '#279f53ff', '#269e53ff', '#259d53ff', '#239d52ff', '#229c52ff', '#219c52ff', '#209b51ff', '#1e9a51ff', '#1d9a51ff', '#1c9950ff', '#1b9950ff', '#1a9850ff']);
+    
+
+    color_map_215f738dadf75b5afd61de7bd9112064.x = d3.scale.linear()
+              .domain([0.3698694817857961, 0.7794394895676193])
+              .range([0, 450 - 50]);
+
+    color_map_215f738dadf75b5afd61de7bd9112064.legend = L.control({position: 'topright'});
+    color_map_215f738dadf75b5afd61de7bd9112064.legend.onAdd = function (map) {var div = L.DomUtil.create('div', 'legend'); return div};
+    color_map_215f738dadf75b5afd61de7bd9112064.legend.addTo(map_4ca93533041094905cfd69b961a73a33);
+
+    color_map_215f738dadf75b5afd61de7bd9112064.xAxis = d3.svg.axis()
+        .scale(color_map_215f738dadf75b5afd61de7bd9112064.x)
+        .orient("top")
+        .tickSize(1)
+        .tickValues([0.3698694817857961, 0.421065732758524, 0.4722619837312519, 0.5234582347039798, 0.5746544856767077, 0.6258507366494357, 0.6770469876221635, 0.7282432385948914, 0.7794394895676193]);
+
+    color_map_215f738dadf75b5afd61de7bd9112064.svg = d3.select(".legend.leaflet-control").append("svg")
+        .attr("id", 'legend')
+        .attr("width", 450)
+        .attr("height", 40);
+
+    color_map_215f738dadf75b5afd61de7bd9112064.g = color_map_215f738dadf75b5afd61de7bd9112064.svg.append("g")
+        .attr("class", "key")
+        .attr("fill", "black")
+        .attr("transform", "translate(25,16)");
+
+    color_map_215f738dadf75b5afd61de7bd9112064.g.selectAll("rect")
+        .data(color_map_215f738dadf75b5afd61de7bd9112064.color.range().map(function(d, i) {
+          return {
+            x0: i ? color_map_215f738dadf75b5afd61de7bd9112064.x(color_map_215f738dadf75b5afd61de7bd9112064.color.domain()[i - 1]) : color_map_215f738dadf75b5afd61de7bd9112064.x.range()[0],
+            x1: i < color_map_215f738dadf75b5afd61de7bd9112064.color.domain().length ? color_map_215f738dadf75b5afd61de7bd9112064.x(color_map_215f738dadf75b5afd61de7bd9112064.color.domain()[i]) : color_map_215f738dadf75b5afd61de7bd9112064.x.range()[1],
+            z: d
+          };
+        }))
+      .enter().append("rect")
+        .attr("height", 40 - 30)
+        .attr("x", function(d) { return d.x0; })
+        .attr("width", function(d) { return d.x1 - d.x0; })
+        .style("fill", function(d) { return d.z; });
+
+    color_map_215f738dadf75b5afd61de7bd9112064.g.call(color_map_215f738dadf75b5afd61de7bd9112064.xAxis).append("text")
+        .attr("class", "caption")
+        .attr("y", 21)
+        .attr("fill", "black")
+        .text("");
+</script>
+</html>
